@@ -1,0 +1,19 @@
+## Implemented Data Structures
+* Array
+* HashTable
+
+## Implemented Algorithms
+* Insertion Sort
+* Dynamic Programming - Fibonacci
+
+## Require Scripts
+
+### Install Development Environment
+``` sh
+# Installtion
+py -m venv venv
+pip install -r requirements.txt
+
+# Upgrade Dependency
+pip freeze > requirements.txt
+```
