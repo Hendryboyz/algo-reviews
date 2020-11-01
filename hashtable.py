@@ -21,7 +21,11 @@ class HashTable:
     
   def keys(self):
     all_buckets = [ bucket for bucket in self.data if bucket ]
-    return [element[0] for each_bucket in all_buckets for element in each_bucket]
+    return [ element[0] for each_bucket in all_buckets for element in each_bucket ]
+  
+  def values(self):
+    all_buckets = [ bucket for bucket in self.data if bucket ]
+    return [ element [1] for each_bucket in all_buckets for element in each_bucket ]
 
   def __hash_function(self, key):
     hash = 0
