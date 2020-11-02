@@ -14,8 +14,15 @@ class linkedlist:
         return self.__length
     
     def append(self, value):
-        self.tail.next = node(value)
-        self.tail = self.tail.next
+        new_node = node(value)
+        self.tail.next = new_node
+        self.tail = new_node
+        self.__length += 1
+    
+    def prepend(self, value):
+        new_node = node(value)
+        new_node.next = self.head
+        self.head = new_node
         self.__length += 1
     
     def traverse(self):
@@ -26,7 +33,3 @@ class linkedlist:
             cur = cur.next
         return element
 
-my_linked_list = linkedlist(10)
-my_linked_list.append(1)
-my_linked_list.append(15)
-my_linked_list.traverse()
