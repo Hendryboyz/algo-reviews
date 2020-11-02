@@ -1,6 +1,7 @@
 ## Implemented Data Structures
 * Array
 * HashTable
+* LinkedList
 
 ## Implemented Algorithms
 * Insertion Sort
