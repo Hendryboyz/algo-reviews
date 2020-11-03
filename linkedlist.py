@@ -28,16 +28,16 @@ class linkedlist:
   def insert(self, index, value):
     if index == 0:
       self.prepend(value)
-    elif index == self.__length - 1:
+    elif index >= self.__length:
       self.append(value)
     else:
       new_node = node(value)
-      prev = self.__find_handle_node(index)
+      prev = self.__find_leader_node(index)
       new_node.next = prev.next
       prev.next = new_node
       self.__length += 1
 
-  def __find_handle_node(self, index):
+  def __find_leader_node(self, index):
     prev = self.head
     for i in range(index - 1):
       if prev.next != None:
@@ -48,12 +48,27 @@ class linkedlist:
     if index == 0:
       self.head = self.head.next
     else:
-      prev = self.__find_handle_node(index)
+      prev = self.__find_leader_node(index)
       prev.next = prev.next.next
       is_last = (index == self.__length - 1)
       if is_last:
         self.tail = prev
     self.__length -= 1
+  
+  def reverse(self):
+    new_head = None
+    cur = self.head
+    while cur != None:
+      cur_next = cur.next
+      if new_head == None:
+        new_head = cur
+        new_head.next = None
+        self.tail = new_head
+      else:
+        cur.next = new_head
+        new_head = cur
+      cur = cur_next
+    self.head = new_head
 
   def print_list(self):
     elements = []
