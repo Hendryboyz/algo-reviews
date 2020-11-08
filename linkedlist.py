@@ -56,17 +56,16 @@ class linkedlist:
     self.__length -= 1
   
   def reverse(self):
-    new_head = None
-    cur = self.head
+    if self.__length == 1:
+      return
+    new_head = self.head
+    cur = new_head.next
+    self.tail = new_head
+    self.head.next = None
     while cur != None:
       cur_next = cur.next
-      if new_head == None:
-        new_head = cur
-        new_head.next = None
-        self.tail = new_head
-      else:
-        cur.next = new_head
-        new_head = cur
+      cur.next = new_head
+      new_head = cur
       cur = cur_next
     self.head = new_head
 
