@@ -2,6 +2,7 @@
 * Array
 * HashTable
 * LinkedList
+  * Doubly LinkedList
 
 ## Implemented Algorithms
 * Insertion Sort

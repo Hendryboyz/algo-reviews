@@ -4,25 +4,38 @@ class node:
     self.next = None
 
 class linkedlist:
-  def __init__(self, value):
+  def __init__(self, value = None):
+    if value != None:
+      self.__init_new_list(value)
+    else:
+      self.head = None
+      self.tail = None
+    self.__length = 1 if self.head != None else 0
+
+  def __init_new_list(self, value):
     self.head = node(value)
     self.tail = self.head
-    self.__length = 1
   
   @property
   def length(self):
     return self.__length
   
   def append(self, value):
-    new_node = node(value)
-    self.tail.next = new_node
-    self.tail = new_node
+    if self.head == None:
+      self.__init_new_list(value)
+    else:
+      new_node = node(value)
+      self.tail.next = new_node
+      self.tail = new_node
     self.__length += 1
   
   def prepend(self, value):
-    new_node = node(value)
-    new_node.next = self.head
-    self.head = new_node
+    if self.head == None:
+      self.__init_new_list(value)
+    else:
+      new_node = node(value)
+      new_node.next = self.head
+      self.head = new_node
     self.__length += 1
 
   def insert(self, index, value):
@@ -45,15 +58,20 @@ class linkedlist:
     return prev
   
   def remove(self, index):
+    if self.__length == 0:
+      return
+    value = self.head.value
     if index == 0:
       self.head = self.head.next
     else:
       prev = self.__find_leader_node(index)
+      value = prev.next.value
       prev.next = prev.next.next
       is_last = (index == self.__length - 1)
       if is_last:
         self.tail = prev
     self.__length -= 1
+    return value
   
   def reverse(self):
     if self.__length == 1:
