@@ -6,7 +6,7 @@ class StackMeta(type):
   def __subclasscheck__(cls, subclass):
     return (hasattr(subclass, 'push') and callable(subclass.push) and
             hasattr(subclass, 'pop') and callable(subclass.pop) and
-            hasattr(subclass, 'peak') and callable(subclass.peak))
+            hasattr(subclass, 'peek') and callable(subclass.peek))
 
 class Stack(metaclass=StackMeta):
   pass
@@ -25,7 +25,7 @@ class LinkedListStack(Stack):
   def pop(self):
     return self.data.remove(0)
 
-  def peak(self):
+  def peek(self):
     return self.data.head.value
   
   def is_empty(self):
@@ -36,5 +36,5 @@ class ArrayStack(Stack):
     pass
   def pop(self):
     pass
-  def peak(self):
+  def peek(self):
     pass
