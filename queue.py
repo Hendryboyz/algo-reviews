@@ -14,5 +14,5 @@ class Queue:
     def dequeue(self):
         return self.data.remove(0)
     
-    def peak(self):
+    def peek(self):
         return self.data.head.value
