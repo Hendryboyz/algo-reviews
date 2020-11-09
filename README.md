@@ -5,7 +5,9 @@
   * Single LinkedList
   * Doubly LinkedList
 * Queue(implement by Single LinkedList)
-* **Stack(Working...)**
+* Stack
+  * LinkedList Stack
+  * **Array Stack(Working...)**
 
 ## Implemented Algorithms
 * Insertion Sort
