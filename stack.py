@@ -32,9 +32,25 @@ class LinkedListStack(Stack):
     return self.data.length == 0
 
 class ArrayStack(Stack):
+  def __init__(self):
+    self.data = []
+  
+  @property
+  def length(self):
+    return len(self.data)
+
   def push(self, value):
-    pass
+    self.data.append(value)
+
   def pop(self):
-    pass
+    if len(self.data) == 0:
+      return None
+    return self.data.pop()
+
   def peek(self):
-    pass
+    if len(self.data) == 0:
+      return None
+    return self.data[len(self.data) - 1]
+
+  def is_empty(self):
+    return len(self.data) == 0

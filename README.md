@@ -7,7 +7,7 @@
 * Queue(implement by Single LinkedList)
 * Stack
   * LinkedList Stack
-  * **Array Stack(Working...)**
+  * Array Stack
 * **Tree(Working...)**
 
 ## Implemented Algorithms
