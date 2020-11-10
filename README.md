@@ -8,6 +8,7 @@
 * Stack
   * LinkedList Stack
   * **Array Stack(Working...)**
+* **Tree(Working...)**
 
 ## Implemented Algorithms
 * Insertion Sort
