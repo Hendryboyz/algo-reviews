@@ -13,24 +13,40 @@ class BinarySearchTree:
     if self.root == None:
       self.root = new_node
     else:
-      root = self.root
-      parent_node = self.__find_parent(root, value)
+      # root = self.root
+      parent_node = self.__loop_find_parent(value)
       if value >= parent_node.value:
         parent_node.right = new_node
       else:
         parent_node.left = new_node
   
-  def __find_parent(self, current: BinaryTreeNode, value):
+  def __loop_find_parent(self, value):
+    parent = self.root
+    while True:
+      if value >= parent.value:
+        if parent.right == None:
+          break
+        else:
+          parent = parent.right
+      else:
+        if parent.left == None:
+          break
+        else:
+          parent = parent.left
+
+    return parent
+
+  def __recursive_find_parent(self, current: BinaryTreeNode, value):
     if value >= current.value:
       if current.right == None:
         return current
       else:
-        return self.__find_parent(current.right, value)
+        return self.__recursive_find_parent(current.right, value)
     else:
       if current.left == None:
         return current
       else:
-        return self.__find_parent(current.left, value)
+        return self.__recursive_find_parent(current.left, value)
 
   def lookup(self, value):
     current = self.root
