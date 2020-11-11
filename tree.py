@@ -33,7 +33,13 @@ class BinarySearchTree:
         return self.__find_parent(current.left, value)
 
   def lookup(self, value):
-    pass
+    current = self.root
+    while (current != None) and (current.value != value):
+      if value >= current.value:
+        current = current.right
+      else:
+        current = current.left
+    return current
 
   def remove(self, value):
     pass
