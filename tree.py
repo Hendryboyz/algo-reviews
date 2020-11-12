@@ -58,8 +58,20 @@ class BinarySearchTree:
     return current
 
   def remove(self, value):
-    pass
+    parent = None
+    current = self.root
+    if is_leaf:
+      remove_directly
+    elif only_one_child:
+      replace_with_child
+    else:
+      successor = self.__find_successor(current)
+      successor.left = current.left
+      successor.right = current.right
   
+  def __find_successor(self, node: BinaryTreeNode) -> BinaryTreeNode:
+    pass
+
   def print(self):
     self.__traverse(self.root)
   
