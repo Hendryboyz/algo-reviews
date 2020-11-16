@@ -62,33 +62,21 @@ class BinarySearchTree:
     current = self.root
     while current != None and current.value != value:
       parent = current
-      if value > current.value:
-        current = current.right
-      else:
-        current = current.left
+      current = current.right if value > current.value else current.left
     
     if current == None:
       return False
 
     if self.__child_count(current) == 0: # is leaf
-      if parent.left != None and current.value == parent.left.value:
-        parent.left = None
-      else:
-        parent.right = None
+      self.__replace_child(parent, current, None)
     elif self.__child_count(current) == 1: # only one child
       child = current.left if current.right == None else current.right
-      if parent.left != None and current.value == parent.left.value:
-        parent.left = child
-      else:
-        parent.right = child
+      self.__replace_child(parent, current, child)
     else:
       successor = self.__find_successor(current)
       successor.left = current.left
       successor.right = current.right
-      if parent.left != None and current.value == parent.left.value:
-        parent.left = successor
-      else:
-        parent.right = successor
+      self.__replace_child(parent, current, successor)
     
     current.left = None
     current.right = None
@@ -101,6 +89,12 @@ class BinarySearchTree:
     child_count += 1 if node.right != None else 0
     return child_count
   
+  def __replace_child(self, parent: BinaryTreeNode, child: BinaryTreeNode, new_child: BinaryTreeNode):
+    if parent.left != None and child.value == parent.left.value:
+      parent.left = new_child
+    else:
+      parent.right = new_child
+
   def __find_successor(self, node: BinaryTreeNode) -> BinaryTreeNode:
     # find the node in the right subtree that has the minimum value
     successor_parent = node
