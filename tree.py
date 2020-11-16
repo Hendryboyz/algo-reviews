@@ -60,17 +60,64 @@ class BinarySearchTree:
   def remove(self, value):
     parent = None
     current = self.root
-    if is_leaf:
-      remove_directly
-    elif only_one_child:
-      replace_with_child
+    while current != None and current.value != value:
+      parent = current
+      if value > current.value:
+        current = current.right
+      else:
+        current = current.left
+    
+    if current == None:
+      return False
+
+    if self.__child_count(current) == 0: # is leaf
+      if parent.left != None and current.value == parent.left.value:
+        parent.left = None
+      else:
+        parent.right = None
+    elif self.__child_count(current) == 1: # only one child
+      child = current.left if current.right == None else current.right
+      if parent.left != None and current.value == parent.left.value:
+        parent.left = child
+      else:
+        parent.right = child
     else:
       successor = self.__find_successor(current)
       successor.left = current.left
       successor.right = current.right
+      if parent.left != None and current.value == parent.left.value:
+        parent.left = successor
+      else:
+        parent.right = successor
+    
+    current.left = None
+    current.right = None
+
+    return True
+  
+  def __child_count(self, node: BinaryTreeNode):
+    child_count = 0
+    child_count += 1 if node.left != None else 0
+    child_count += 1 if node.right != None else 0
+    return child_count
   
   def __find_successor(self, node: BinaryTreeNode) -> BinaryTreeNode:
-    pass
+    # find the node in the right subtree that has the minimum value
+    successor_parent = node
+    successor = node.right
+    while self.__child_count(successor) != 0:
+      successor_parent = successor
+      if successor.left != None:
+        successor = successor.left
+      else:
+        successor = successor.right
+
+    if successor_parent.left != None and successor.value == successor_parent.left.value:
+      successor_parent.left = None
+    else:
+      successor_parent.right = None
+
+    return successor
 
   def print(self):
     self.__traverse(self.root)

@@ -8,7 +8,10 @@
 * Stack
   * LinkedList Stack
   * Array Stack
-* **Tree(Working...)**
+* Tree - Binary Search Tree
+  * insert
+  * lookup
+  * remove
 
 ## Implemented Algorithms
 * Insertion Sort
