@@ -12,6 +12,8 @@
   * insert
   * lookup
   * remove
+* Tree - AVL Tree
+  * **insert(provide the support method to balance tree)**
 
 ## Implemented Algorithms
 * Insertion Sort
