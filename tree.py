@@ -36,18 +36,6 @@ class BinarySearchTree:
 
     return parent
 
-  def __recursive_find_parent(self, current: BinaryTreeNode, value):
-    if value >= current.value:
-      if current.right == None:
-        return current
-      else:
-        return self.__recursive_find_parent(current.right, value)
-    else:
-      if current.left == None:
-        return current
-      else:
-        return self.__recursive_find_parent(current.left, value)
-
   def lookup(self, value):
     current = self.root
     while (current != None) and (current.value != value):
