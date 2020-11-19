@@ -22,10 +22,8 @@ class AVLTree:
       else:
         parent_node.left = new_node
       
-      if self.__is_balance(path[2]) == False:
-        self.__rotation(path[1], path[2])
       if path[1] != None and self.__is_balance(path[1]) == False:
-        self.__rotation(path[0], path[1])
+        self.__rotation(path[0], path[1], value)
     
   def __find_insertion_path(self, value):
     path = [None] * 3
@@ -58,29 +56,40 @@ class AVLTree:
     else:
       return max(self.__get_tree_height(root.left), self.__get_tree_height(root.right)) + 1
   
-  def __rotation(self, parent: BinaryTreeNode, target: BinaryTreeNode):
-    pass
+  def __rotation(self, parent: BinaryTreeNode, target: BinaryTreeNode, value):
+    if target.left != None and target.left.left != None and value == target.left.left.value: # LL
+      self.__right_rotation(parent, target)
+    elif target.left != None and target.left.right != None and value == target.left.right.value: # LR
+      self.__left_rotation(target, target.left)
+      self.__right_rotation(parent, target)
+    elif target.right != None and target.right.right != None and value == target.right.right.value: # RR
+      self.__left_rotation(parent, target)
+    elif target.right != None and target.right.left != None and value == target.right.left.value: # RL
+      self.__right_rotation(target, target.right)
+      self.__left_rotation(parent, target)
+    else:
+      return
 
   def __left_rotation(self, parent: BinaryTreeNode, current: BinaryTreeNode):
     right_node = current.right
     current.right = right_node.left
     right_node.left = current
-    self.__replace_child(parent, current, right_node)
+    if parent == None:
+      self.root = right_node
+    else:
+      self.__replace_child(parent, current, right_node)
 
   def __right_rotation(self, parent: BinaryTreeNode, current: BinaryTreeNode):
     left_node = current.left
     current.left = left_node.right
     left_node.right = current
-    self.__replace_child(parent, current, left_node)
+    if parent == None:
+      self.root == left_node
+    else:
+      self.__replace_child(parent, current, left_node)
     
   def __replace_child(self, parent, child: BinaryTreeNode, new_child: BinaryTreeNode):
     if parent.left != None and child.value == parent.left.value:
       parent.left = new_child
     else:
       parent.right = new_child
-
-tree = AVLTree()
-tree.insert(1)
-tree.insert(2)
-tree.insert(3)
-tree.insert(4)
