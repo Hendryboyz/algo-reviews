@@ -64,7 +64,10 @@ class BinarySearchTree:
       successor = self.__find_successor(current)
       successor.left = current.left
       successor.right = current.right
-      self.__replace_child(parent, current, successor)
+      if parent == None:
+        self.root = successor
+      else:
+        self.__replace_child(parent, current, successor)
     
     current.left = None
     current.right = None
@@ -87,12 +90,9 @@ class BinarySearchTree:
     # find the node in the right subtree that has the minimum value
     successor_parent = node
     successor = node.right
-    while self.__child_count(successor) != 0:
+    while self.__child_count(successor) != 0 and successor.left != None:
       successor_parent = successor
-      if successor.left != None:
-        successor = successor.left
-      else:
-        successor = successor.right
+      successor = successor.left
 
     if successor_parent.left != None and successor.value == successor_parent.left.value:
       successor_parent.left = None
