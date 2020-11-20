@@ -15,23 +15,21 @@ class AVLTree:
     if self.root == None:
       self.root = new_node
     else:
-      path = self.__find_insertion_path(value)
+      path = self.__find_operation_path(value)
       parent_node = path[-1]
       if value >= parent_node.value:
         parent_node.right = new_node
       else:
         parent_node.left = new_node
       
-      if path[1] != None and self.__is_balance(path[1]) == False:
-        self.__rotation(path[0], path[1], value)
+      self.__try_balance_tree(path)
+      
     
-  def __find_insertion_path(self, value):
-    path = [None] * 3
+  def __find_operation_path(self, value):
+    path = []
     current = self.root
     while True:
-      path[0] = path[1]
-      path[1] = path[2]
-      path[2] = current
+      path.append(current)
       if value >= current.value:
         if current.right == None:
           break
@@ -45,8 +43,21 @@ class AVLTree:
 
     return path
   
-  def __is_balance(self, node: BinaryTreeNode):
-    return abs(self.__get_tree_height(node.left) - self.__get_tree_height(node.right)) <= 1
+  def __try_balance_tree(self, path):
+    parent = path.pop()
+    ancestor = path.pop() if len(path) > 0 else None
+    while parent != None:
+      balance_factor = self.__get_balance_factor(parent)
+      is_balance = abs(balance_factor) <= 1
+
+      if parent != None and is_balance == False:
+        self.__rotation(ancestor, parent, balance_factor)
+
+      parent = ancestor
+      ancestor = path.pop() if len(path) > 0 else None
+
+  def __get_balance_factor(self, node: BinaryTreeNode):
+    return self.__get_tree_height(node.left) - self.__get_tree_height(node.right)
 
   def __get_tree_height(self, root: BinaryTreeNode) -> int:
     if root == None:
@@ -56,17 +67,19 @@ class AVLTree:
     else:
       return max(self.__get_tree_height(root.left), self.__get_tree_height(root.right)) + 1
   
-  def __rotation(self, parent: BinaryTreeNode, target: BinaryTreeNode, value):
-    if target.left != None and target.left.left != None and value == target.left.left.value: # LL
-      self.__right_rotation(parent, target)
-    elif target.left != None and target.left.right != None and value == target.left.right.value: # LR
-      self.__left_rotation(target, target.left)
-      self.__right_rotation(parent, target)
-    elif target.right != None and target.right.right != None and value == target.right.right.value: # RR
-      self.__left_rotation(parent, target)
-    elif target.right != None and target.right.left != None and value == target.right.left.value: # RL
-      self.__right_rotation(target, target.right)
-      self.__left_rotation(parent, target)
+  def __rotation(self, parent: BinaryTreeNode, target: BinaryTreeNode, balance_factor: int):
+    if balance_factor > 1:
+      if target.left != None and target.left.left != None: # LL
+        self.__right_rotation(parent, target)
+      elif target.left != None and target.left.right != None: # LR
+        self.__left_rotation(target, target.left)
+        self.__right_rotation(parent, target)
+    elif balance_factor < -1:
+      if target.right != None and target.right.right != None: # RR
+        self.__left_rotation(parent, target)
+      elif target.right != None and target.right.left != None: # RL
+        self.__right_rotation(target, target.right)
+        self.__left_rotation(parent, target)
     else:
       return
 

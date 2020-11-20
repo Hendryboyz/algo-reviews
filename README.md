@@ -13,7 +13,8 @@
   * lookup
   * remove
 * Tree - AVL Tree
-  * **insert(provide the support method to balance tree)**
+  * insert
+  * **delete(working)**
 
 ## Implemented Algorithms
 * Insertion Sort
