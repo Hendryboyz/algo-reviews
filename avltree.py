@@ -24,37 +24,38 @@ class AVLTree:
       
       self.__try_balance_tree(path)
       
-    
   def __find_operation_path(self, value):
     path = []
     current = self.root
     while True:
       path.append(current)
-      if value >= current.value:
+      if value > current.value:
         if current.right == None:
           break
         else:
           current = current.right
-      else:
+      elif value < current.value:
         if current.left == None:
           break
         else:
           current = current.left
+      else:
+        break
 
     return path
   
   def __try_balance_tree(self, path):
-    parent = path.pop()
-    ancestor = path.pop() if len(path) > 0 else None
-    while parent != None:
-      balance_factor = self.__get_balance_factor(parent)
+    sub_tree_root = path.pop()
+    parent = path.pop() if len(path) > 0 else None
+    while sub_tree_root != None:
+      balance_factor = self.__get_balance_factor(sub_tree_root)
       is_balance = abs(balance_factor) <= 1
 
-      if parent != None and is_balance == False:
-        self.__rotation(ancestor, parent, balance_factor)
+      if sub_tree_root != None and is_balance == False:
+        self.__rotation(parent, sub_tree_root, balance_factor)
 
-      parent = ancestor
-      ancestor = path.pop() if len(path) > 0 else None
+      sub_tree_root = parent
+      parent = path.pop() if len(path) > 0 else None
 
   def __get_balance_factor(self, node: BinaryTreeNode):
     return self.__get_tree_height(node.left) - self.__get_tree_height(node.right)
@@ -97,7 +98,7 @@ class AVLTree:
     current.left = left_node.right
     left_node.right = current
     if parent == None:
-      self.root == left_node
+      self.root = left_node
     else:
       self.__replace_child(parent, current, left_node)
     
@@ -106,3 +107,70 @@ class AVLTree:
       parent.left = new_child
     else:
       parent.right = new_child
+
+  def remove(self, value):
+    path = self.__find_operation_path(value)
+    current = path.pop()
+    parent = path[-1] if len(path) > 0 else None
+
+    if current == None or current.value != value:
+      return False
+
+    if self.__child_count(current) == 0: # is leaf
+      self.__replace_child(parent, current, None)
+    elif self.__child_count(current) == 1: # only one child
+      child = current.left if current.right == None else current.right
+      self.__replace_child(parent, current, child)
+      path.append(child)
+    else:
+      successor = self.__find_successor(current)
+      successor.left = current.left
+      successor.right = current.right
+      if parent == None:
+        self.root = successor
+      else:
+        self.__replace_child(parent, current, successor)
+      path.append(successor)
+    self.__try_balance_tree(path)
+
+    current.left = None
+    current.right = None
+
+    return True
+  
+  def __child_count(self, node: BinaryTreeNode):
+    child_count = 0
+    child_count += 1 if node.left != None else 0
+    child_count += 1 if node.right != None else 0
+    return child_count
+  
+  def __find_successor(self, node: BinaryTreeNode) -> BinaryTreeNode:
+    # find the node in the right subtree that has the minimum value
+    successor_parent = node
+    successor = node.right
+    while self.__child_count(successor) != 0 and successor.left != None:
+      successor_parent = successor
+      successor = successor.left
+
+    if successor_parent.left != None and successor.value == successor_parent.left.value:
+      successor_parent.left = None
+    else:
+      successor_parent.right = None
+
+    return successor
+
+tree = AVLTree()
+tree.insert(15)
+tree.insert(6)
+tree.insert(50)
+tree.insert(4)
+tree.insert(7)
+tree.insert(23)
+tree.insert(71)
+tree.insert(5)
+
+tree.remove(15)
+tree.remove(71)
+
+
+print(tree.root.value)

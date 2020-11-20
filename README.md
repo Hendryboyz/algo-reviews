@@ -14,7 +14,7 @@
   * remove
 * Tree - AVL Tree
   * insert
-  * **delete(working)**
+  * remove
 
 ## Implemented Algorithms
 * Insertion Sort
