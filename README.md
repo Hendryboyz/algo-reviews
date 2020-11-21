@@ -15,6 +15,9 @@
 * Tree - AVL Tree
   * insert
   * remove
+  * lookup(from BST)
+* Graph
+  * Undirected Graph with adjacent list
 
 ## Implemented Algorithms
 * Insertion Sort
