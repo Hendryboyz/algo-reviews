@@ -158,19 +158,3 @@ class AVLTree:
       successor_parent.right = None
 
     return successor
-
-tree = AVLTree()
-tree.insert(15)
-tree.insert(6)
-tree.insert(50)
-tree.insert(4)
-tree.insert(7)
-tree.insert(23)
-tree.insert(71)
-tree.insert(5)
-
-tree.remove(15)
-tree.remove(71)
-
-
-print(tree.root.value)
