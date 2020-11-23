@@ -9,6 +9,7 @@ class Graph:
             return
         else:
             self.adjacent_list[node] = []
+            self.node_count += 1
 
     def add_edge(self, node1, node2):
         all_nodes = self.adjacent_list.keys()
