@@ -20,8 +20,13 @@
   * Undirected Graph with adjacent list
 
 ## Implemented Algorithms
-* Insertion Sort
-* Dynamic Programming - Fibonacci
+* Recursion
+  * factorial
+  * fibonacci
+* Sorting
+  * insertion
+* Dynamic Programming
+  * fibonacci
 
 ## Require Scripts
 
