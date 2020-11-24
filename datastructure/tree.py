@@ -102,11 +102,25 @@ class BinarySearchTree:
     return successor
 
   def print(self):
-    self.__traverse(self.root)
+    self.__traverse_inorder(self.root)
   
-  def __traverse(self, node: BinaryTreeNode):
+  def __traverse_inorder(self, node: BinaryTreeNode):
     if node.left != None:
-      self.__traverse(node.left)
+      self.__traverse_inorder(node.left)
     print(node.value)
     if node.right != None:
-      self.__traverse(node.right)
+      self.__traverse_inorder(node.right)
+  
+  def __traverse_preorder(self, node: BinaryTreeNode):
+    print(node.value)
+    if node.left != None:
+      self.__traverse_preorder(node.left)
+    if node.right != None:
+      self.__traverse_preorder(node.right)
+  
+  def __traverse_postorder(self, node: BinaryTreeNode):
+    if node.left != None:
+      self.__traverse_preorder(node.left)
+    if node.right != None:
+      self.__traverse_preorder(node.right)
+    print(node.value)
