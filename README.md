@@ -25,6 +25,7 @@
   * fibonacci
 * Sorting
   * bubble
+  * selection
   * insertion
 * Dynamic Programming
   * fibonacci
