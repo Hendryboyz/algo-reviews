@@ -1,10 +1,13 @@
 def insertion_sort(array):
-  for j in range(1, len(array)):
-    current = array[j]
-    i = j - 1
-    previous = array[i]
-    while i >= 0 and previous > current:
-      array[i + 1] = previous
-      i = i - 1
-      previous = array[i]
-    array[i + 1] = current
+  for i in range(1, len(array)):
+    current = array[i]
+    j = i - 1
+    previous = array[j]
+    while j >= 0 and previous > current:
+      array[j + 1] = previous
+      j -= 1
+      if j < 0: # python allow negative index in array but other languages not
+        break
+      previous = array[j]
+    array[j + 1] = current
+  return array
