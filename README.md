@@ -24,9 +24,10 @@
   * factorial
   * fibonacci
 * Sorting
-  * bubble
-  * selection
-  * insertion
+  * bubble sort
+  * selection sort
+  * insertion sort
+  * quick sort
 * Dynamic Programming
   * fibonacci
 
