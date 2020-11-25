@@ -24,6 +24,7 @@
   * factorial
   * fibonacci
 * Sorting
+  * bubble
   * insertion
 * Dynamic Programming
   * fibonacci

@@ -1,5 +1,4 @@
 def insertion_sort(array):
-  print(array)
   for j in range(1, len(array)):
     current = array[j]
     i = j - 1
