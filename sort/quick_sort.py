@@ -1,15 +1,15 @@
 def quick_sort(array):
     if len(array) < 2:
         return array
-    sort_part(array, 0, len(array) - 1)
+    sort(array, 0, len(array) - 1)
     return array
     
-def sort_part(array, start, end):
+def sort(array, start, end):
     if end <= start:
         return
     anchor = partition(array, start, end)
-    sort_part(array, start, anchor - 1)
-    sort_part(array, anchor + 1, end)
+    sort(array, start, anchor - 1)
+    sort(array, anchor + 1, end)
 
 def partition(array, start, end):
     pivot = array[end]

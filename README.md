@@ -28,6 +28,7 @@
   * selection sort
   * insertion sort
   * quick sort
+  * merge sort(not complete)
 * Dynamic Programming
   * fibonacci
 
