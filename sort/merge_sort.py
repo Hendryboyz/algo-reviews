@@ -15,9 +15,39 @@ def get_middle_idx(start, end):
 def sort(array, start, middle, end):
   if end <= start:
     return
-  # sort(array, start, , middle - 1)
-  # sort(array, middle, , end)
-  # merge(array, start, middle, end)
+  sort(
+    array, 
+    start,
+    get_middle_idx(start, middle - 1),
+    middle - 1)
+  sort(
+    array,
+    middle,
+    get_middle_idx(middle, end),
+    end)
+  merge(array, start, middle, end)
   
 def merge(array, start, middle, end):
-  pass
+  left = array[start:middle]
+  right = array[middle:end+1]
+  left_idx = right_idx = 0
+  idx = start
+
+  while left_idx != len(left) and right_idx != len(right):
+    if left[left_idx] <= right[right_idx]:
+      array[idx] = left[left_idx]
+      left_idx += 1
+    else:
+      array[idx] = right[right_idx]
+      right_idx += 1
+    idx += 1
+  
+  while right_idx != len(right):
+    array[idx] = right[right_idx]
+    right_idx += 1
+    idx += 1
+
+  while left_idx != len(left):
+    array[idx] = left[left_idx]
+    left_idx += 1
+    idx += 1
