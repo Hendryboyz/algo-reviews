@@ -5,27 +5,25 @@ def merge_sort(array):
     return array
   start = 0
   end = len(array) - 1
-  mid = get_middle_idx(start, end)
-  sort(array, start, mid, end)
+  sort(array, start, end)
   return array
 
-def get_middle_idx(start, end):
-  return int(math.ceil((end + start) / 2))
-
-def sort(array, start, middle, end):
+def sort(array, start, end):
   if end <= start:
     return
+  middle = get_middle_idx(start, end)
   sort(
     array, 
     start,
-    get_middle_idx(start, middle - 1),
     middle - 1)
   sort(
     array,
     middle,
-    get_middle_idx(middle, end),
     end)
   merge(array, start, middle, end)
+
+def get_middle_idx(start, end):
+  return int(math.ceil((end + start) / 2))
   
 def merge(array, start, middle, end):
   left = array[start:middle]
