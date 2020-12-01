@@ -29,7 +29,7 @@
   * insertion sort
   * quick sort
   * merge sort
-  * heap sort(not complete)
+  * heap sort
 * Dynamic Programming
   * fibonacci
 
