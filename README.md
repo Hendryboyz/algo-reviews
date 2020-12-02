@@ -30,6 +30,8 @@
   * quick sort
   * merge sort
   * heap sort
+  * counting sort
+  * radix sort(next)
 * Dynamic Programming
   * fibonacci
 
