@@ -31,7 +31,7 @@
   * merge sort
   * heap sort
   * counting sort
-  * radix sort(next)
+  * radix sort
 * Dynamic Programming
   * fibonacci
 
