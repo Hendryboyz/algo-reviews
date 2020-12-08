@@ -32,6 +32,9 @@
   * heap sort
   * counting sort
   * radix sort
+* Searching
+  * breadth first search
+  * depth first search
 * Dynamic Programming
   * fibonacci
 
