@@ -1,4 +1,4 @@
-from linkedlist import linkedlist
+from datastructure.linkedlist import linkedlist
 
 class Queue:
     def __init__(self):

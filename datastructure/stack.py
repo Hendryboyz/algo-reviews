@@ -1,4 +1,4 @@
-from linkedlist import linkedlist
+from datastructure.linkedlist import linkedlist
 
 class StackMeta(type):
   def __instancecheck__(cls, instance):

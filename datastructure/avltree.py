@@ -1,4 +1,5 @@
-from tree import BinaryTreeNode
+from datastructure.tree import BinaryTreeNode
+
 class AVLTree:
   def __init__(self):
     self.root = None
