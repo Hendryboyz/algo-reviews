@@ -22,6 +22,26 @@ class TreeSearching:
     
     return searching_result
   
+  def breadth_first_search_recursively(self):
+    searching_result = []
+    
+    upcomming_nodes = deque()
+    upcomming_nodes.append(self.tree.root)
+    self.__execute_bfs_recursively(upcomming_nodes, searching_result)
+
+    return searching_result
+  
+  def __execute_bfs_recursively(self, nodes, result):
+    if len(nodes) == 0:
+      return result
+    current = nodes.popleft()
+    result.append(current.value)
+    if current.left != None:
+      nodes.append(current.left)
+    if current.right != None:
+      nodes.append(current.right)
+    return self.__execute_bfs_recursively(nodes, result)
+  
   def depth_first_search(self):
     searching_result = []
     
