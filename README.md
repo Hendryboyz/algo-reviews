@@ -35,6 +35,8 @@
 * Searching
   * breadth first search
   * depth first search
+* Graph Shortest Path
+  * Dijkstra's Algorithm
 * Dynamic Programming
   * fibonacci
 
