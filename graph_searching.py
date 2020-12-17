@@ -34,17 +34,6 @@ class GraphSearching:
     print(f'Starting node is: {self.start_vertex}')
     print(self.result_table)
 
-  def find_path_to(self, vertex):
-    current_vertex = self.result_table[vertex]
-    shortest_distance = current_vertex[self.__SHORTEST_DIST_FROM_START]
-    path = [vertex]
-    while current_vertex[self.__PREV_VERTEX] != None:
-      path.append(current_vertex[self.__PREV_VERTEX])
-      current_vertex = self.result_table[current_vertex[self.__PREV_VERTEX]]
-    path.reverse()
-    display_path = ' -> '.join(path)
-    print(f'path ({display_path}) with shortest distance: {shortest_distance}')
-
   def __update_adjacent_vertex_shortest_path(self, current_vertex, visited, tracking_table):
     for edge in self.graph.adjacent_list[current_vertex]:
       dest = edge[self.__DEST_VERTEX]
@@ -65,3 +54,14 @@ class GraphSearching:
         next_vertex = vertex
 
     return next_vertex
+  
+  def find_path_to(self, vertex):
+    current_vertex = self.result_table[vertex]
+    shortest_distance = current_vertex[self.__SHORTEST_DIST_FROM_START]
+    path = [vertex]
+    while current_vertex[self.__PREV_VERTEX] != None:
+      path.append(current_vertex[self.__PREV_VERTEX])
+      current_vertex = self.result_table[current_vertex[self.__PREV_VERTEX]]
+    path.reverse()
+    display_path = ' -> '.join(path)
+    print(f'path ({display_path}) with shortest distance: {shortest_distance}')
