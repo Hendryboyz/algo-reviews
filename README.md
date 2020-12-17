@@ -39,6 +39,9 @@
   * Dijkstra's Algorithm
 * Dynamic Programming
   * fibonacci
+  * climb stair
+  * house robber
+  * best time to buy and sell stock
 
 ## Require Scripts
 
