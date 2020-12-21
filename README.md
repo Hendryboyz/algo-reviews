@@ -42,6 +42,7 @@
   * climb stair
   * house robber
   * best time to buy and sell stock
+  * maximum subarray
 
 ## Require Scripts
 
@@ -54,3 +55,11 @@ pip install -r requirements.txt
 # Upgrade Dependency
 pip freeze > requirements.txt
 ```
+
+## Reference
+* Big-O cheetsheet : https://www.bigocheatsheet.com/
+* Heap Sort : https://brilliant.org/wiki/heap-sort/
+* Counting Sort : https://brilliant.org/wiki/counting-sort/
+* Radix Sort : https://brilliant.org/wiki/radix-sort/
+* Dijkstra Algorithm : https://medium.com/basecs/finding-the-shortest-path-with-a-little-help-from-dijkstra-613149fbdc8e
+* Dynamic Programming : https://medium.com/basecs/less-repetition-more-dynamic-programming-43d29830a630
