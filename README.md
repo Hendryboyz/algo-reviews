@@ -43,6 +43,8 @@
   * house robber
   * best time to buy and sell stock
   * maximum subarray
+* Backtracking
+  * N-Queens
 
 ## Require Scripts
 
