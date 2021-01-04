@@ -43,6 +43,7 @@
   * house robber
   * best time to buy and sell stock
   * maximum subarray
+  * catalan number
 * Backtracking
   * N-Queens
 
