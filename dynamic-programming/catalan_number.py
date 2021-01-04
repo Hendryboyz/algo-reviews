@@ -10,5 +10,3 @@ def n_th_catalan_number(n):
       catalan_memo[current_n] += (catalan_memo[r - 1] * catalan_memo[current_n - r])
 
   return catalan_memo[n]
-
-print(n_th_catalan_number(10))
