@@ -7,16 +7,16 @@ def solveNQueens(n: int):
 
 def put_queen_on_board(n, row, current_board: list):
   if row >= n:
-    board.append(current_board)
+    board.append(current_board.copy())
     return
 
   for col in range(n):
-    next_board = current_board.copy()
     if has_alignment_queen(n, current_board, row, col):
       continue
     board_row = build_next_row(n, col)
-    next_board.append(board_row)
-    put_queen_on_board(n, row + 1, next_board)
+    current_board.append(board_row)
+    put_queen_on_board(n, row + 1, current_board)
+    current_board.pop()
 
 def has_alignment_queen(n, current_board, row, col):
   has_other_queen = False
@@ -40,3 +40,5 @@ def build_next_row(col_length, queen_index):
   for i in range(col_length):
     board_row += '.' if i != queen_index else "Q"
   return board_row
+
+print(solveNQueens(4))
