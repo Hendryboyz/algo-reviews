@@ -47,6 +47,7 @@
   * catalan number
 * Backtracking
   * N-Queens
+  * Binary Watch(LeetCode. 401)
 
 ## Require Scripts
 
