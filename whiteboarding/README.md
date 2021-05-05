@@ -8,3 +8,5 @@ https://www.algoexpert.io/questions
 * River Sizes
 * Longest Peak
 * Move Element To End
+* Linked List Construction
+* Two Number Sums
